@@ -1,6 +1,22 @@
 <?php
 
-$filename = 'url.txt';	
+use Aws\S3\S3Client;
+ 
+// Create an Amazon S3 client object
+$client = S3Client::factory(array(
+));
+ 
+ //    'key'    => '[aws access key]',
+//    'secret' => '[aws secret key]'
+
+ 
+// Register the stream wrapper from a client object
+$client->registerStreamWrapper();
+
+$bucket = 'magnusdahlgren';
+$key = 'url.txt';
+
+$filename = "s3://{$bucket}/{$key}";	
 $pattern = '/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/';
 
 function err($msg) {
